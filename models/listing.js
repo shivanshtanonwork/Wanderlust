@@ -15,6 +15,12 @@ const listingSchema = new Schema({   //Created our Schema
     price: Number,
     location: String,
     country: String,
+    reviews: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Review"
+        }
+    ]
 })
 
 //Creating our model
