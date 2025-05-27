@@ -2,13 +2,24 @@ const express = require('express')
 const app = express()
 const users = require("./routes/user")
 const posts = require("./routes/post")
+const cookieParser = require("cookie-parser")
 
+app.use(cookieParser())
+
+// Cookie middleware
 app.get("/getcookies", (req, res) => {
-    res.cookie("greet", "Hello")
+    res.cookie("greet", "Namaste")
+    res.cookie("madeIn", "INDIA")
     res.send("Sent you some cookies!")
 })
 
+app.get("/greet", (req, res) => {
+    let { name = "anonymous" } = req.cookies
+    res.send(`Hi ${name}`)
+})
+
 app.get("/", (req, res) => {
+    console.dir(req.cookies)   // passed middleware
     res.send("Hi I'm Root")
 })
 
