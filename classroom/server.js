@@ -4,7 +4,17 @@ const users = require("./routes/user")
 const posts = require("./routes/post")
 const cookieParser = require("cookie-parser")
 
-app.use(cookieParser())
+app.use(cookieParser("secretcode"))
+
+app.get("/getsignedcookies", (req, res) => {
+    res.cookie("made-in", " INDIA", { signed: true })
+    res.send("Signed cookie sent")
+})
+
+app.get("/verify", (req, res) => {
+    console.log(req.signedCookies)
+    res.send("verified")
+})
 
 // Cookie middleware
 app.get("/getcookies", (req, res) => {
