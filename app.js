@@ -7,10 +7,13 @@ const ejsMate = require("ejs-mate")
 const ExpressError = require("./utils/ExpressError")
 const session = require('express-session')
 const flash = require("connect-flash")
+const passport = require("passport")
+const LocalStratergy = require("passport-local")
+const User = require("./models/user")
 
-
-const listings = require("./routes/listing")
-const reviews = require("./routes/review")
+const listingRouter = require("./routes/listing")
+const reviewRouter = require("./routes/review")
+const userRouter = require("./routes/user")
 
 const MONGO_URL = 'mongodb://127.0.0.1:27017/wanderlust'
 
@@ -50,14 +53,31 @@ app.get("/", (req, res) => {
 app.use(session(sessionOptions))
 app.use(flash())
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStratergy(User.authenticate()))
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use((req, res, next) => {
     res.locals.success = req.flash("success")
     res.locals.error = req.flash("error")
     next()
 })
 
-app.use("/listings", listings)
-app.use("/listings/:id/reviews", reviews)
+app.get("/demouser", async (req, res) => {
+    let fakeUser = new User({
+        email: "student@gmail.com",
+        username: "delta-student"
+    })
+    let registeredUser = await User.register(fakeUser, "helloworld")
+    res.send(registeredUser)
+})
+
+app.use("/listings", listingRouter)
+app.use("/listings/:id/reviews", reviewRouter)
+app.use("/", userRouter)
 
 app.all('{*splat}', (req, res, next) => {
     next(new ExpressError(404, "Page not found!"))
