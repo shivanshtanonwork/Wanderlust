@@ -12,7 +12,7 @@ body {
 /* Navbar */
 .navbar {
   height: 5rem;
-  background-color: white;
+  background-color: #222831 !important;
 }
 
 .fa-compass {
@@ -21,13 +21,14 @@ body {
 }
 
 .nav-link {
-  color: #222222 !important;
+  color: #ebebeb !important;
 }
 
 /* Footer  */
+
 .f-info-links a {
   text-decoration: none;
-  color: #222222;
+  color: white !important;
 }
 
 .f-info-links a:hover {
@@ -49,6 +50,8 @@ body {
 }
 
 .f-info {
+  background-color: #222831 !important;
+  color: white !important;
   text-align: center;
   display: flex;
   flex-wrap: wrap;
@@ -117,4 +120,11 @@ body {
 .show-card {
   padding-left: 0;
   padding-right: 0;
+}
+
+/* rating */
+#rating::-webkit-slider-thumb {
+  background-color: #ebebeb;
+  border: 1px solid black;
+  cursor: pointer;
 }

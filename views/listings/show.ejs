@@ -30,7 +30,7 @@
     >
 
     <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
-      <button class="btn btn-dark offset-5">Delete</button>
+      <button class="btn btn-light offset-5">Delete</button>
     </form>
   </div>
 
@@ -66,7 +66,7 @@
         ></textarea>
         <div class="invalid-feedback">Please add some comments for review</div>
       </div>
-      <button class="btn btn-outline-dark">Submit</button>
+      <button class="btn btn-light">Submit</button>
     </form>
 
     <hr />
@@ -84,7 +84,7 @@
             method="POST"
             action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE"
           >
-            <button class="btn btn-sm btn-dark">Delete</button>
+            <button class="btn btn-sm btn-light">Delete</button>
           </form>
         </div>
       </div>
