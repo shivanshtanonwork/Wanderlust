@@ -126,5 +126,4 @@ body {
 #rating::-webkit-slider-thumb {
   background-color: #ebebeb;
   border: 1px solid black;
-  cursor: pointer;
 }
