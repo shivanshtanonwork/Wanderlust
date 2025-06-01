@@ -4,12 +4,10 @@ const wrapAsync = require("../utils/wrapAsync")
 const Listing = require("../models/listing")
 const { isLoggedIn, isOwner, validateListing } = require("../middleware")
 
+const listingController = require("../controllers/listings")
 
 //Index Route
-router.get("/", wrapAsync(async (req, res) => {
-    const allListings = await Listing.find({})
-    res.render("listings/index.ejs", { allListings })
-}))
+router.get("/", wrapAsync(listingController.index))
 
 //New/Create Route
 router.get("/new", isLoggedIn, (req, res) => {
