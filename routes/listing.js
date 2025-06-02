@@ -5,7 +5,8 @@ const Listing = require("../models/listing")
 const { isLoggedIn, isOwner, validateListing } = require("../middleware")
 const listingController = require("../controllers/listings")
 const multer = require('multer')
-const upload = multer({ dest: 'uploads/' })
+const { storage } = require("../cloudConfig")
+const upload = multer({ storage })
 
 //Index Route & Create Route
 router
