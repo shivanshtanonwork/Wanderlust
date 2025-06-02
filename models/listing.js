@@ -9,9 +9,8 @@ const listingSchema = new Schema({   //Created our Schema
     },
     description: String,
     image: {
-        type: String,
-        default: "https://media.istockphoto.com/id/825319778/photo/sunset-on-beach.webp?a=1&b=1&s=612x612&w=0&k=20&c=vh8kD3q4WUMTZsdsC678GCPMm_y13ncqQ-K_WVLz5Zk=",
-        set: (v) => v === "" ? "https://media.istockphoto.com/id/825319778/photo/sunset-on-beach.webp?a=1&b=1&s=612x612&w=0&k=20&c=vh8kD3q4WUMTZsdsC678GCPMm_y13ncqQ-K_WVLz5Zk=" : v,
+        url: String,
+        filename: String
     },
     price: Number,
     location: String,
